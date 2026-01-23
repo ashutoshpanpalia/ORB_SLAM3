@@ -35,6 +35,9 @@
 
 #include <System.h>
 
+
+#include <filesystem>
+
 using namespace std;
 
 bool b_continue_session;
@@ -305,8 +308,11 @@ int main(int argc, char **argv) {
     std::cout << " Model = " << intrinsics_cam.model << std::endl;
 
 
+    //Modification
+
     // Create SLAM system. It initializes all system threads and gets ready to process frames.
     ORB_SLAM3::System SLAM(argv[1],argv[2],ORB_SLAM3::System::RGBD, true, 0, file_name);
+    //ORB_SLAM3::System SLAM(argv[1],argv[2],ORB_SLAM3::System::RGBD, true, 0, custom_trajectory_path);
     float imageScale = SLAM.GetImageScale();
 
     double timestamp;
@@ -402,6 +408,21 @@ int main(int argc, char **argv) {
 #endif
     }
     cout << "System shutdown!\n";
+
+    //Modifications
+        // Call Shutdown first
+    SLAM.Shutdown();
+    
+    // Now save trajectories to custom path
+    if (!file_name.empty()) {
+        cout << "Saving trajectories to custom path..." << endl;
+        SLAM.SaveTrajectoryTUM(file_name + "_CameraTrajectory.txt");
+        SLAM.SaveKeyFrameTrajectoryTUM(file_name + "_KeyFrameTrajectory.txt");
+        cout << "Trajectories saved!" << endl;
+    }
+    
+    cout << "System shutdown!\n";
+    return 0;
 }
 
 rs2_stream find_stream_to_align(const std::vector<rs2::stream_profile>& streams)
