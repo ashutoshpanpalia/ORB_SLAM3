@@ -7,6 +7,16 @@
 # Unignore all dirs
 !*/
 
+
+# Ignore all .bag files anywhere
+*.bag
+# Ignore processed datasets
+my_program/data_processing/data/processed_dataset/
+
+# Ignore raw rosbag files
+my_program/data_processing/data/raw_bag_files/
+
+
 CMakeLists.txt.user
 CMakeLists_modified.txt
 
