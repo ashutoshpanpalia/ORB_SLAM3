@@ -162,9 +162,29 @@ if(realsense2_FOUND)
 
 
 endif()
+#Testing saving the trajectory on custom path
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${PROJECT_SOURCE_DIR}/my_program)
+if(realsense2_FOUND)
+    add_executable(my_rgbd
+            my_program/my_rgbd.cc)
+    target_link_libraries(my_rgbd ${PROJECT_NAME})
+
+endif()
 
 
+#Testing automatics bag file to camera trajectory conversion
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${PROJECT_SOURCE_DIR}/my_program/data_processing)
+if(realsense2_FOUND)
+    add_executable(processing_pipeline
+            my_program/data_processing/processing_pipeline.cc)
+    target_link_libraries(processing_pipeline ${PROJECT_NAME})
 
+    add_executable(bulk_processing_pipeline
+            my_program/data_processing/bulk_processing_pipeline.cc)
+    target_link_libraries(bulk_processing_pipeline ${PROJECT_NAME})
+
+
+endif()
 
 
 # RGB-D inertial examples
