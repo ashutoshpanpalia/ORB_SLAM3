@@ -162,6 +162,8 @@ if(realsense2_FOUND)
 
 
 endif()
+
+
 #Testing saving the trajectory on custom path
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${PROJECT_SOURCE_DIR}/my_program)
 if(realsense2_FOUND)
@@ -185,6 +187,24 @@ if(realsense2_FOUND)
 
 
 endif()
+
+
+#Data collection and processing piepline:
+
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${PROJECT_SOURCE_DIR}/my_program/data_collection_pipeline)
+if(realsense2_FOUND)
+    add_executable(processing_one_dataset
+        my_program/data_collection_pipeline/processing_one_dataset.cpp
+    )
+    target_link_libraries(processing_one_dataset ${PROJECT_NAME})
+
+    add_executable(processing_bulk_dataset
+        my_program/data_collection_pipeline/processing_bulk_dataset.cc
+    )
+    target_link_libraries(processing_bulk_dataset ${PROJECT_NAME})
+
+
+    endif()
 
 
 # RGB-D inertial examples
