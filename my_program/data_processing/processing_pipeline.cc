@@ -26,9 +26,9 @@ int main(int argc, char **argv)
 {
     if(argc != 4)
     {
-        cerr << endl << "Usage: ./rgbd_dataset path_to_vocabulary path_to_settings path_to_sequence" << endl;
+        cerr << endl << "Usage: ./processing_pipeline path_to_vocabulary path_to_settings path_to_sequence" << endl;
         cerr << endl;
-        cerr << "Example: ./rgbd_dataset Vocabulary/ORBvoc.txt Examples/RGB-D/RealSense_D435i.yaml dataset_output" << endl;
+        cerr << "Example: ./processing_pipeline Vocabulary/ORBvoc.txt Examples/RGB-D/RealSense_D435i.yaml dataset_output" << endl;
         cerr << endl;
         cerr << "Dataset structure:" << endl;
         cerr << "  dataset_output/" << endl;
