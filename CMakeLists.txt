@@ -207,6 +207,20 @@ if(realsense2_FOUND)
     endif()
 
 
+
+#Intel D405 testing
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${PROJECT_SOURCE_DIR}/my_program/camera_calibration_yaml)
+if(realsense2_FOUND)
+    add_executable(rgbd_realsense_D405
+        my_program/camera_calibration_yaml/rgbd_realsense_D405.cc
+    )
+    target_link_libraries(rgbd_realsense_D405 ${PROJECT_NAME})
+
+
+    endif()
+
+
+
 # RGB-D inertial examples
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${PROJECT_SOURCE_DIR}/Examples/RGB-D-Inertial)
 
